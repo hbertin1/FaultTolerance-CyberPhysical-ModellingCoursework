@@ -1,0 +1,18 @@
+class DamageConfinement
+
+    instance variables
+        public static pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
+
+
+    operations
+        public DamageConfinement : seq of real ==> DamageConfinement
+        DamageConfinement(position) == (
+            pos := position;
+        );
+
+        public confine: seq of real ==> bool
+        confine(position) == (
+            return true;
+        );
+
+end DamageConfinement

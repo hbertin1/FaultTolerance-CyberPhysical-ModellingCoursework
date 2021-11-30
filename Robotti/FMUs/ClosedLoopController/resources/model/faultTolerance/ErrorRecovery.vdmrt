@@ -1,0 +1,18 @@
+class ErrorRecovery
+
+    instance variables
+        public static pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
+
+
+    operations
+        public ErrorRecovery : seq of real ==> ErrorRecovery
+        ErrorRecovery(position) == (
+            pos := position;
+        );
+
+        public recover: seq of real ==> bool
+        recover(position) == (
+            return true;
+        );
+
+end ErrorRecovery

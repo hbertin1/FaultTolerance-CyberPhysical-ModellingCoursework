@@ -1,0 +1,23 @@
+class ErrorDetection
+
+    instance variables
+        public static lastPos : seq of real := [0.0, 0.0, 0.0, 0.0];
+
+    operations
+        public ErrorDetection : seq of real ==> ErrorDetection
+        ErrorDetection(position) == (
+            lastPos := position;
+        );
+
+        public detect : seq of real ==> bool --true if a fault is detected
+        detect(pos) == (
+            dcl diff : seq of real := [0.0, 0.0, 0.0, 0.0];
+            -- for i = len diff to id = 1 by -1 do 
+            for i = 1 to len diff by 1 do (
+                diff(i) := pos(i) - lastPos(i);
+                if diff(i) > 10 then return true;   -- return something to identify the fault sensor
+            ); 
+            return false;   
+        );
+
+end ErrorDetection
