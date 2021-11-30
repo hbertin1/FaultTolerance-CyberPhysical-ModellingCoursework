@@ -1,7 +1,14 @@
 class FaultTolerance
 
     types 
-        Mode  = <INIT> | <ERROR_DETECTION> | <DAMAGE_CONFINEMENT> | <ERROR_RECOVERY> | <FAULT_TREATMENT>
+        Mode  = <INIT> | <ERROR_DETECTION> | <DAMAGE_CONFINEMENT> | <ERROR_RECOVERY> | <FAULT_TREATMENT>;
+
+        -- use to access the information about the error
+        public Location = <GNSS_E> | <GNSS_S> | <GNSS_N>;
+        public Error :: detected : bool
+                        id          : int
+                        location    : Location
+                        corrected   : bool
     
     instance variables
         public static errorDetection : [ErrorDetection] := nil;
