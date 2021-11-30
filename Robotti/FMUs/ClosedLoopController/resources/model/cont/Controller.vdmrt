@@ -42,6 +42,7 @@ class Controller
 		
 	values
 		private REQUESTED_SPEED: real = 1.0;
+		private APPLY_FAULT_TOLERANCE: bool = true;
 		
 	operations
 	
@@ -52,7 +53,7 @@ class Controller
 			actuatorSpeed := aSp;
 
 			fault_tolerance := new FaultTolerance();	-- new instance of the fault tolerance
-			applyFaultTolerance := false;
+			applyFaultTolerance := APPLY_FAULT_TOLERANCE;
 			faultToleranceApplied := false;
 
 			route_name := "figure_8";
