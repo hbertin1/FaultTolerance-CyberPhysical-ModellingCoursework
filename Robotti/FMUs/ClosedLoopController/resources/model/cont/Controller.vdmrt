@@ -33,6 +33,11 @@ class Controller
 		private route_name: seq of char := "";
 		private route: Route := new Route([]);
 		private wp: WayPoint := new WayPoint(0,0);
+
+		-- fault tolerance mechanism
+		private fault_tolerance: [FaultTolerance];
+		private applyFaultTolerance: bool;
+		private faultToleranceApplied: bool;
 		
 		
 	values
@@ -45,6 +50,10 @@ class Controller
 			sensorGNSS_Pos := gnss_pos;
 			actuatorAngle :=  aSt;
 			actuatorSpeed := aSp;
+
+			fault_tolerance := new FaultTolerance();	-- new instance of the fault tolerance
+			applyFaultTolerance := false;
+			faultToleranceApplied := false;
 
 			route_name := "figure_8";
 			route := Route`LoadTravlRoute(route_name);
@@ -66,6 +75,9 @@ class Controller
 
             -- read GPS: x, y, theta, 0
 			PosGNSS := sensorGNSS_Pos.read(); 
+
+			-- verify the correctness of the GPS data 
+			if applyFaultTolerance then faultToleranceApplied := fault_tolerance.check(PosGNSS);
 						
             -- get current mode from supervisory controller            
 			mode := modeControl.GetMode(route); 

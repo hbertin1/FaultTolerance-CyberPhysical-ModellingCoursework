@@ -12,25 +12,30 @@ class FaultTolerance
         public static last_pos : seq of real :=  [0.0, 0.0, 0.0, 0.0];
 
     operations
-        public FaultTolerance :  seq of real * ErrorDetection ==> FaultTolerance
-        FaultTolerance(pos, errorDetect) == (
-            last_pos := pos;
+        public FaultTolerance :  () ==> FaultTolerance
+        FaultTolerance() == (
             mode := <ERROR_DETECTION>;
-            errorDetection := errorDetect;
+            errorDetection := new ErrorDetection(last_pos);
+            damageConfinement := new DamageConfinement(last_pos);
+            errorRecovery := new ErrorRecovery(last_pos);
         );
 
-        public step : seq of real ==> ()
-        step(pos) == (
+        public check : seq of real ==> bool
+        check(pos) == (
+            dcl ret : bool := false;
             if mode = <INIT> then mode := <ERROR_DETECTION> -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 if errorDetection.detect(pos) then mode := <DAMAGE_CONFINEMENT>;
             );
             if mode = <DAMAGE_CONFINEMENT> then (
                 if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
+                ret := true;
             );
             if mode = <ERROR_RECOVERY> then (
                 if errorRecovery.recover(pos) then mode := <ERROR_DETECTION>;
+                ret := true;
             );
+            return ret;
         );
 
 end FaultTolerance
