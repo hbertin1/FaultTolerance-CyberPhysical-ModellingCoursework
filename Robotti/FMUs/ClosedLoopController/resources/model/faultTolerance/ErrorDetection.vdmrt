@@ -14,7 +14,7 @@ class ErrorDetection
         public detect : seq of real ==> Fault --true if a fault is detected
         detect(pos) == (
             dcl diff : seq of real := [0.0, 0.0, 0.0, 0.0];
-            dcl locate : seq of Fault`Location := [<GNSS_S>, <GNSS_E>, <GNSS_N>];
+            dcl locate : seq of Fault`Location := [<GNSS_E>, <GNSS_N>, <GNSS_H>];
 
             for i = 1 to len diff-1 by 1 do (           -- -1 bc the 4th value isn't used 
                 diff(i) := pos(i) - lastPos(i);
