@@ -1,7 +1,7 @@
 class Fault
     
     types
-        public Location = <GNSS_E> | <GNSS_S> | <GNSS_N> | <NOWHERE>;
+        public Location = <GNSS_E> | <GNSS_N> | <GNSS_H> | <NOWHERE>;
 
     instance variables
         detected : bool;

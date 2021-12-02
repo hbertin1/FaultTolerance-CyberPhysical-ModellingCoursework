@@ -1,18 +1,31 @@
 class ErrorRecovery
 
     instance variables
-        public static pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
-
+        public static last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0]; -- uselesss
 
     operations
         public ErrorRecovery : seq of real ==> ErrorRecovery
-        ErrorRecovery(position) == (
-            pos := position;
+        ErrorRecovery(pos) == (
+            last_pos := pos;
         );
 
-        public recover: seq of real ==> bool
-        recover(position) == (
-            return true;
+        public recover: seq of real * Fault * real * real ==> seq of real
+        recover(pos, fault, speed, steering) == (
+            dcl loc : Fault`Location := fault.getLocation();
+            dcl faultParam : int := 0;
+            dcl distance : int := time * speed; -- !!!!! Attention revoir unités !!!!!
+            dcl new_pos : seq of real := pos;
+            
+            if loc = <GNSS_E> then faultParam := 1
+            else if loc = <GNSS_N> then faultParam := 2
+            else if loc = <GNSS_H> then faultParam := 3
+            else return pos;
+
+            if faultParam = 1 then (
+                dcl new_x : int := distance * distance * MATH`cos(pos(3));
+                new_pos(1) := new_x;
+            );
+            return new_pos;
         );
 
 end ErrorRecovery

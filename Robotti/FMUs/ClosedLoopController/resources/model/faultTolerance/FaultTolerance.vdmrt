@@ -7,7 +7,7 @@ class FaultTolerance
     instance variables
         public static errorDetection : [ErrorDetection] := nil;
         -- public static damageConfinement : [DamageConfinement] := nil;
-        -- public static errorRecovery : [ErrorRecovery] := nil;
+        public static errorRecovery : [ErrorRecovery] := nil;
         -- add fault treatment ?
         -- test
         public static mode : Mode := <INIT>;
@@ -18,27 +18,27 @@ class FaultTolerance
         FaultTolerance() == (
             mode := <INIT>;
             errorDetection := new ErrorDetection(last_pos);
-            -- damageConfinement := new DamageConfinement(last_pos);
-            -- errorRecovery := new ErrorRecovery(last_pos);
+            errorRecovery := new ErrorRecovery(last_pos);
         );
 
-        public check : seq of real ==> bool
-        check(pos) == (
-            dcl ret : bool := false;
+        public check : seq of real * real * real ==> seq of real
+        check(pos, speed, steering) == (                        -- speed and steering are the value given to the Model at Step-1                          -- It's excepted value not real values
+            dcl fault : Fault;
             if mode = <INIT> then mode := <ERROR_DETECTION>     -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 mode := <ERROR_DETECTION>;
-                if errorDetection.detect(pos).isDetected() then mode := <ERROR_DETECTION>;
+                fault := errorDetection.detect(pos);
+                if fault.isDetected() then mode := <ERROR_RECOVERY>;
             );
             -- if mode = <DAMAGE_CONFINEMENT> then (
             --     if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
             --     ret := true;
             -- );
-            -- if mode = <ERROR_RECOVERY> then (
-            --     if errorRecovery.recover(pos) then mode := <ERROR_DETECTION>;
-            --     ret := true;
-            -- );
-            return ret;
+            if mode = <ERROR_RECOVERY> then (
+                mode := <ERROR_DETECTION>;
+                return errorRecovery.recover(pos, fault, speed, steering);
+            );
+            return pos;
         );
 
 end FaultTolerance
