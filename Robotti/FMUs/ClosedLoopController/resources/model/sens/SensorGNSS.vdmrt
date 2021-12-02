@@ -22,7 +22,7 @@ class SensorGNSS
 	
 		public Sync: () ==> ()
 			Sync() == cycles(20)(
-				local_val := [i_x.get(), i_y.get(), i_theta.get(), 0.0];
+				local_val := [20, i_y.get(), i_theta.get(), 0.0];
 				-- if time > 10e9 then (
 				-- 	local_val := [0.0, 0.0, 20.0, 0.0];
 				-- )
