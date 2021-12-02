@@ -10,12 +10,12 @@ class Fault
         corrected : bool;
 
     operations
-        public Fault : bool * Location * bool ==> Fault
-        Fault(fault_detected, fault_location, fault_corrected) == (
-            detected := fault_detected;
+        public Fault : () ==> Fault
+        Fault() == (
+            detected := false;
             id := 0;
-            location := fault_location;
-            corrected := fault_corrected;
+            location := <NOWHERE>;
+            corrected := false;
         );
 
         public isDetected : () ==> bool
