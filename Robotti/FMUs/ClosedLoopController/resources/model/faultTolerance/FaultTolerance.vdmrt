@@ -11,7 +11,6 @@ class FaultTolerance
         -- add fault treatment ?
         public static mode : Mode := <INIT>;
         public static last_pos : seq of real :=  [0.0, 0.0, 0.0, 0.0];
-        public static faults : seq of Fault := []; 
 
     operations
         public FaultTolerance :  () ==> FaultTolerance
