@@ -78,7 +78,7 @@ class Controller
 			PosGNSS := sensorGNSS_Pos.read(); 
 
 			-- verify the correctness of the GPS data 
-			if applyFaultTolerance then faultToleranceApplied := fault_tolerance.check(PosGNSS);
+			-- if applyFaultTolerance then faultToleranceApplied := fault_tolerance.check(PosGNSS);
 						
             -- get current mode from supervisory controller            
 			mode := modeControl.GetMode(route); 
