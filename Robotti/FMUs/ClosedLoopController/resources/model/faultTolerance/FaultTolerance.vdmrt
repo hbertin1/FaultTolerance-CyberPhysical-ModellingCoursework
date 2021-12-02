@@ -9,6 +9,7 @@ class FaultTolerance
         -- public static damageConfinement : [DamageConfinement] := nil;
         -- public static errorRecovery : [ErrorRecovery] := nil;
         -- add fault treatment ?
+        -- test
         public static mode : Mode := <INIT>;
         public static last_pos : seq of real :=  [0.0, 0.0, 0.0, 0.0];
 
