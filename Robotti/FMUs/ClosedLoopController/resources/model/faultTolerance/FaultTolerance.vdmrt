@@ -25,7 +25,7 @@ class FaultTolerance
         public check : seq of real ==> bool
         check(pos) == (
             dcl ret : bool := false;
-            if mode = <INIT> then mode := <ERROR_DETECTION> -- maybe add init time
+            if mode = <INIT> then mode := <ERROR_DETECTION>     -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 mode := <ERROR_DETECTION>;
                 if errorDetection.detect(pos).isDetected() then mode := <DAMAGE_CONFINEMENT>;
