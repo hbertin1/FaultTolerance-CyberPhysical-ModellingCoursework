@@ -13,7 +13,7 @@ class ErrorRecovery
         recover(pos, fault, speed, steering) == (
             dcl loc : Fault`Location := fault.getLocation();
             dcl faultParam : int := 0;
-            -- dcl distance : int := time * speed; -- !!!!! Attention revoir unités !!!!!
+            dcl distance : int := time*10e9 * speed; -- !!!!! Attention revoir unités !!!!!
             dcl new_pos : seq of real := pos;
             
             if loc = <GNSS_E> then faultParam := 1
