@@ -28,7 +28,7 @@ class FaultTolerance
             if mode = <INIT> then mode := <ERROR_DETECTION>     -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 mode := <ERROR_DETECTION>;
-                if errorDetection.detect(pos).isDetected() then mode := <DAMAGE_CONFINEMENT>;
+                if errorDetection.detect(pos).isDetected() then mode := <ERROR_DETECTION>;
             );
             -- if mode = <DAMAGE_CONFINEMENT> then (
             --     if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
