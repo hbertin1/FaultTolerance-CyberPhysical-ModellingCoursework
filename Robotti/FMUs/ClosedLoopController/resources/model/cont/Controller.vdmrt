@@ -35,7 +35,7 @@ class Controller
 		private wp: WayPoint := new WayPoint(0,0);
 
 		-- fault tolerance mechanism
-		private fault_tolerance: [FaultTolerance];
+		-- private fault_tolerance: [FaultTolerance];
 		private applyFaultTolerance: bool;
 		private faultToleranceApplied: bool;
 		
