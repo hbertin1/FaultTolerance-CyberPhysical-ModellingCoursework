@@ -17,8 +17,7 @@ class ErrorDetection
             dcl locate : seq of Fault`Location := [<GNSS_S>, <GNSS_E>, <GNSS_N>];
             for i = 1 to len diff-1 by 1 do (           -- -1 the 4th value isn't used 
                 diff(i) := pos(i) - lastPos(i);
-                -- IO`printf("Position : , diff : Position : []\n", []);
-                IO`printf("Route: [%s,%s,%s,%s], length: \n", [diff]);
+                IO`printf("Route: [%s], length: \n", [i]);
             --     if diff(i) > 10 then (
             --         fault.setDetected(true);
             --         fault.setLocation(locate(i));
