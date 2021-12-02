@@ -1,0 +1,55 @@
+class Fault
+    
+    types
+        public Location = <GNSS_E> | <GNSS_S> | <GNSS_N> | <NOWHERE>;
+
+    instance variables
+        detected : bool;
+        id : int;
+        location : Location;
+        corrected : bool;
+
+    operations
+        public Fault : bool * Location * bool ==> Fault
+        Fault(fault_detected, fault_location, fault_corrected) == (
+            detected := fault_detected;
+            id := 0;
+            location := fault_location;
+            corrected := fault_corrected;
+        );
+
+        public isDetected : () ==> bool
+        isDetected() == return detected;
+
+        public setDetected : bool ==> ()
+        setDetected(d) == detected := d;
+
+        public getId : () ==> int
+        getId() == return id;
+
+        public setid : int ==> ()
+        setid(new_id) == id := new_id;
+
+        public getLocation : () ==> Location
+        getLocation() == return location;
+
+        public setLocation : Location ==> ()
+        setLocation(loc) == location :=loc;
+
+        public isCorrected : () ==> bool
+        isCorrected() == return detected;
+
+        public setCorrected : bool ==> ()
+        setCorrected(c) == detected := c;
+
+        
+
+        -- faire subclass spéciale pour les erreurs de GPS      
+end Fault
+
+-- voir si on met ça
+
+-- class GNSS_Fault is subclass of Fault
+
+
+-- end fault

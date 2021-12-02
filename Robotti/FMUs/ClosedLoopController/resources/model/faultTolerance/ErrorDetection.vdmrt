@@ -1,27 +1,28 @@
 class ErrorDetection
 
-    types
-        import types from  -- voir comment importer les tyeps
-
     instance variables
         public static lastPos : seq of real := [0.0, 0.0, 0.0, 0.0];
+        public fault : Fault;
 
     operations
         public ErrorDetection : seq of real ==> ErrorDetection
         ErrorDetection(position) == (
             lastPos := position;
+            fault := new Fault();
         );
 
-        public detect : seq of real ==> Error --true if a fault is detected
+        public detect : seq of real ==> Fault --true if a fault is detected
         detect(pos) == (
             dcl diff : seq of real := [0.0, 0.0, 0.0, 0.0];
-            dcl ret : Error := nil;
-            -- for i = len diff to id = 1 by -1 do 
+            dcl locate : seq of type := [<GNSS_S>, <GNSS_E>, <GNSS_N>];
             for i = 1 to len diff by 1 do (
                 diff(i) := pos(i) - lastPos(i);
-                if diff(i) > 10 then return true;   -- return something to identify the fault sensor
+                if diff(i) > 10 then (
+                    fault.setDetected(true);   -- return something to identify the fault sensor
+
+                );  
             ); 
-            return false;   
+            return fault;   
         );
 
 end ErrorDetection
