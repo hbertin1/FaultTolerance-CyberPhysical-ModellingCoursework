@@ -5,7 +5,7 @@ class faultInjectionControl
 
     instance variables
         public static faultTime : real := 10e9;
-        public static mode : Mode := <NO_FAULTS>; 
+        public static mode : Mode := <INJECTION>; 
     
     operations
         public faultInjectionControl : real * bool ==>  faultInjectionControl
