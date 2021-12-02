@@ -15,7 +15,7 @@ class FaultTolerance
     operations
         public FaultTolerance :  () ==> FaultTolerance
         FaultTolerance() == (
-            mode := <ERROR_DETECTION>;
+            mode := <INIT>;
             errorDetection := new ErrorDetection(last_pos);
             damageConfinement := new DamageConfinement(last_pos);
             errorRecovery := new ErrorRecovery(last_pos);
@@ -26,7 +26,8 @@ class FaultTolerance
             dcl ret : bool := false;
             if mode = <INIT> then mode := <ERROR_DETECTION> -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
-                if errorDetection.detect(pos).isDetected() then mode := <DAMAGE_CONFINEMENT>;
+                mode := <ERROR_DETECTION>;
+                --if errorDetection.detect(pos).isDetected() then mode := <DAMAGE_CONFINEMENT>;
             );
             if mode = <DAMAGE_CONFINEMENT> then (
                 if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
