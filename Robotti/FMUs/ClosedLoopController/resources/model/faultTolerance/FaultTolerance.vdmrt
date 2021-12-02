@@ -30,6 +30,7 @@ class FaultTolerance
                 mode := <ERROR_DETECTION>;
                 if errorDetection.detect(pos).isDetected() then mode := <ERROR_DETECTION>;
             );
+            IO`printf("Mode Fault Tolerance : %s\n", [mode]);
             -- if mode = <DAMAGE_CONFINEMENT> then (
             --     if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
             --     ret := true;
