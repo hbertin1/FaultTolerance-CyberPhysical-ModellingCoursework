@@ -5,7 +5,7 @@ class faultInjectionControl
 
     instance variables
         public static faultTime : real := 10e9;
-        public static mode : Mode := <INJECTION>; 
+        public static mode : Mode := <NO_FAULTS>; 
     
     operations
         public faultInjectionControl : real * bool ==>  faultInjectionControl
@@ -20,8 +20,8 @@ class faultInjectionControl
         injectFault(portValue) == (
             -- IO`printf("test random : %s", [portValue]);
             
-            -- if mode = <WAIT> and time >= faultTime then mode := <INJECTION>;
-            if mode = <INJECTION> or mode = <WAIT> then return 40 --MATH`rand(20)
+            if mode = <WAIT> and time >= faultTime then mode := <INJECTION>;
+            if mode = <INJECTION> then return 40 --MATH`rand(20)
             else return portValue; -- mode = <NO_FAULTS> || <WAIT>
         );
 
