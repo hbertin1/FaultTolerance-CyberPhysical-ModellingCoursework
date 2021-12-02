@@ -8,13 +8,13 @@ instance variables
 	public SensorGNSS_N : RealPort ==> SensorGNSS_N
 	SensorGNSS_N(p) == (
 		port := p;
-		faultInjection := new faultInjectionControl(10e9, true);
+		faultInjection := new faultInjectionControl(10e9, false);
 	);
 		
 	public get: () ==> real
 	get() == (
 		-- if time > 10e9 then return 0;
-		return  20; -- faultInjection.injectFault(port.getValue());
+		return faultInjection.injectFault(port.getValue());
 	);
 
 	
