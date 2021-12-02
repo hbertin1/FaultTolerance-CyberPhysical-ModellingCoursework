@@ -6,8 +6,8 @@ class FaultTolerance
     
     instance variables
         public static errorDetection : [ErrorDetection] := nil;
-        public static damageConfinement : [DamageConfinement] := nil;
-        public static errorRecovery : [ErrorRecovery] := nil;
+        -- public static damageConfinement : [DamageConfinement] := nil;
+        -- public static errorRecovery : [ErrorRecovery] := nil;
         -- add fault treatment ?
         public static mode : Mode := <INIT>;
         public static last_pos : seq of real :=  [0.0, 0.0, 0.0, 0.0];
@@ -17,8 +17,8 @@ class FaultTolerance
         FaultTolerance() == (
             mode := <INIT>;
             errorDetection := new ErrorDetection(last_pos);
-            damageConfinement := new DamageConfinement(last_pos);
-            errorRecovery := new ErrorRecovery(last_pos);
+            -- damageConfinement := new DamageConfinement(last_pos);
+            -- errorRecovery := new ErrorRecovery(last_pos);
         );
 
         public check : seq of real ==> bool
@@ -29,14 +29,14 @@ class FaultTolerance
                 mode := <ERROR_DETECTION>;
                 --if errorDetection.detect(pos).isDetected() then mode := <DAMAGE_CONFINEMENT>;
             );
-            if mode = <DAMAGE_CONFINEMENT> then (
-                if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
-                ret := true;
-            );
-            if mode = <ERROR_RECOVERY> then (
-                if errorRecovery.recover(pos) then mode := <ERROR_DETECTION>;
-                ret := true;
-            );
+            -- if mode = <DAMAGE_CONFINEMENT> then (
+            --     if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
+            --     ret := true;
+            -- );
+            -- if mode = <ERROR_RECOVERY> then (
+            --     if errorRecovery.recover(pos) then mode := <ERROR_DETECTION>;
+            --     ret := true;
+            -- );
             return ret;
         );
 
