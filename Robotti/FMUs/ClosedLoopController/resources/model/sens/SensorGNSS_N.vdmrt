@@ -8,7 +8,7 @@ instance variables
 	public SensorGNSS_N : RealPort ==> SensorGNSS_N
 	SensorGNSS_N(p) == (
 		port := p;
-		faultInjection := new faultInjectionControl(10e9, false);
+		faultInjection := new faultInjectionControl(10e9, true);
 	);
 		
 	public get: () ==> real
