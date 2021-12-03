@@ -1,7 +1,7 @@
 class ErrorRecovery
 
     instance variables
-        public static last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
+        last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
         -- public static last_time: real := time;
 
     operations
