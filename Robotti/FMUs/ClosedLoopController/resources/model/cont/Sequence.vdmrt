@@ -15,7 +15,7 @@ class Sequence
 		
 	values
 	
-    public MAXIMUM_DISTANCE_FROM_WAYPOINT: real = 4;
+    public MAXIMUM_DISTANCE_FROM_WAYPOINT: real = 0.5;
 		
 	operations
 	
@@ -31,6 +31,8 @@ class Sequence
 		*/
 		public GetTargetWayPoint: Route * real * real ==> WayPoint
 		GetTargetWayPoint(route, currentX, currentY) == (
+			IO`printf("distance waypoint : %s",
+			[MATH`distance(currentWaypoint.PosX(), currentWaypoint.PosY(), currentX, currentY)]);
 			if MATH`distance(currentWaypoint.PosX(), currentWaypoint.PosY(), currentX, currentY) <= MAXIMUM_DISTANCE_FROM_WAYPOINT and
 				not route.RouteDone() then
 				currentWaypoint := route.NextWayPoint()
