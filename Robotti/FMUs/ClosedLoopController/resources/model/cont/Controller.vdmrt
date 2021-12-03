@@ -102,7 +102,7 @@ class Controller
 				return
 			);
 			 
-			IO`printf("Steering angle: %s, speed: %s, current position: [%s,%s], current waypoint: [%s,%s]\n", [steering_angle, speed, PosGNSS(1), PosGNSS(2), wp.PosX(), wp.PosY()]);
+			IO`printf("Steering angle: %s, speed: %s, current position: [%s,%s,%s], current waypoint: [%s,%s]\n", [steering_angle, speed, PosGNSS(1), PosGNSS(2), PosGNSS(3), wp.PosX(), wp.PosY()]);
 		);
 		
 end Controller
