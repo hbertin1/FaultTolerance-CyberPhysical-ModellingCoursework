@@ -2,13 +2,13 @@ class ErrorRecovery
 
     instance variables
         public static last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
-        public static last_time: real := 0;
+        -- public static last_time: real := time;
 
     operations
         public ErrorRecovery : seq of real ==> ErrorRecovery
         ErrorRecovery(pos) == (
             last_pos := pos;
-            last_time := time;
+            -- last_time := time;
         );
 
         public recover: seq of real * Fault * real ==> seq of real
@@ -16,8 +16,8 @@ class ErrorRecovery
             dcl loc : Fault`Location := fault.getLocation();
             dcl faultParam : int := 0;
             dcl new_pos : seq of real := pos;
-            dcl delta_time : real := (time-last_time)/1e9;
-            dcl distance : real := speed * delta_time;
+            -- dcl delta_time : real := (time-last_time)/1e9;
+            -- dcl distance : real := speed * delta_time;
 
             -- IO`printf("speed : %s, time : %s", [speed, time/1e9]);
             
@@ -26,10 +26,10 @@ class ErrorRecovery
             else if loc = <GNSS_H> then faultParam := 3
             else return pos;
 
-            if faultParam = 1 then (
-                dcl new_x : real := last_pos(1)+ (distance * MATH`sin(last_pos(3)));
-                new_pos(1) := new_x;
-            );
+            -- if faultParam = 1 then (
+            --     dcl new_x : real := last_pos(1)+ (distance * MATH`sin(last_pos(3)));
+            --     new_pos(1) := new_x;
+            -- );
             last_pos := new_pos;
             return new_pos;
         );
