@@ -78,11 +78,11 @@ class Controller
 			PosGNSS := sensorGNSS_Pos.read(); 
 
 			-- verify the correctness of the GPS data 
-			if applyFaultTolerance then (
-				dcl test : seq of real := fault_tolerance.check(PosGNSS, speed, 1);
-				-- IO`printf("PosGNSS : [%s, %s, %s], PosCalcule : [%s,%s,%s]\n", 
-				-- [PosGNSS(1), PosGNSS(2), PosGNSS(3), test(1), test(2), test(3)]); -- reprendre ici
-			);
+			-- if applyFaultTolerance then (
+			-- 	dcl test : seq of real := fault_tolerance.check(PosGNSS, speed, 1);
+			-- 	-- IO`printf("PosGNSS : [%s, %s, %s], PosCalcule : [%s,%s,%s]\n", 
+			-- 	-- [PosGNSS(1), PosGNSS(2), PosGNSS(3), test(1), test(2), test(3)]); -- reprendre ici
+			-- );
 						
             -- get current mode from supervisory controller            
 			mode := modeControl.GetMode(route); 
