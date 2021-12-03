@@ -79,10 +79,10 @@ class Controller
 
 			-- verify the correctness of the GPS data 
 			if applyFaultTolerance then (
-				PosGNSS := fault_tolerance.check(PosGNSS, speed, 1);
+				dcl PosGNSS2 : seq of real := fault_tolerance.check(PosGNSS, speed, 1);
 				
-				-- IO`printf("PosGNSS : [%s, %s, %s], PosCalcule : [%s,%s,%s]\n", 
-				-- [PosGNSS(1), PosGNSS(2), PosGNSS(3), test(1), test(2), test(3)]); -- reprendre ici
+				IO`printf("PosGNSS computed : [%s, %s, %s]\n", 
+				[PosGNSS2(1), PosGNSS2(2), PosGNSS2(3)]);
 			);
 						
             -- get current mode from supervisory controller            
