@@ -27,17 +27,17 @@ class FaultTolerance
             if mode = <INIT> then mode := <ERROR_DETECTION>     -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 mode := <ERROR_DETECTION>;
-                fault := errorDetection.detect(pos);
-                if fault.isDetected() then mode := <ERROR_RECOVERY>;
+                fault := errorDetection.detect(pos, speed);
+                -- if fault.isDetected() then mode := <ERROR_RECOVERY>;
             );
             -- if mode = <DAMAGE_CONFINEMENT> then (
             --     if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
             --     ret := true;
             -- );
-            if mode = <ERROR_RECOVERY> then (
-                mode := <ERROR_DETECTION>;
-                return errorRecovery.recover(pos, fault, speed, steering);
-            );
+            -- if mode = <ERROR_RECOVERY> then (
+            --     mode := <ERROR_DETECTION>;
+            --     return errorRecovery.recover(pos, fault, speed, steering);
+            -- );
             return pos;
         );
 
