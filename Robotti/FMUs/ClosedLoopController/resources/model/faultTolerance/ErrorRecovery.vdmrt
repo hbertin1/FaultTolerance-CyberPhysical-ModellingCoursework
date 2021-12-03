@@ -16,8 +16,8 @@ class ErrorRecovery
             dcl loc : Fault`Location := fault.getLocation();
             dcl faultParam : int := 0;
             dcl new_pos : seq of real := pos;
-            -- dcl delta_time : real := (time-last_time)/1e9;
-            -- dcl distance : real := speed * delta_time;
+            dcl delta_time : real := (time-last_time)/1e9;
+            dcl distance : real := speed * delta_time;
 
             -- IO`printf("speed : %s, time : %s", [speed, time/1e9]);
             
