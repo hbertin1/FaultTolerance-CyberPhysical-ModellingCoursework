@@ -34,7 +34,7 @@ class FaultTolerance
             --     ret := true;
             -- );
             if mode = <ERROR_RECOVERY> then (
-                mode := <ERROR_DETECTION>;
+                -- mode := <ERROR_DETECTION>;
                 return errorRecovery.recover(pos, fault, speed);
             );
             return pos;
