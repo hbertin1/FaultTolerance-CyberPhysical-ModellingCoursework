@@ -15,7 +15,7 @@ class Sequence
 		
 	values
 	
-    public MAXIMUM_DISTANCE_FROM_WAYPOINT: real = 1;
+    public MAXIMUM_DISTANCE_FROM_WAYPOINT: real = 3;
 		
 	operations
 	
