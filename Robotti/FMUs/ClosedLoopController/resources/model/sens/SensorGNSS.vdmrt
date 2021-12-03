@@ -13,7 +13,7 @@ class SensorGNSS
 				i_x := x;
 				i_y := y;
 				i_theta := theta;
-				faultInjection := new faultInjectionControl(10e9, false);
+				faultInjection := new faultInjectionControl(30e9, false);
 			);
 	
 		public read: () ==> seq of real
