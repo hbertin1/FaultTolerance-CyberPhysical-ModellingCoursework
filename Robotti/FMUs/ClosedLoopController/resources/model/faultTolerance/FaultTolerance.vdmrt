@@ -34,10 +34,10 @@ class FaultTolerance
             --     if damageConfinement.confine(pos) then mode := <ERROR_RECOVERY>;
             --     ret := true;
             -- );
-            -- if mode = <ERROR_RECOVERY> then (
-            --     mode := <ERROR_DETECTION>;
-            --     return errorRecovery.recover(pos, fault, speed, steering);
-            -- );
+            if mode = <ERROR_RECOVERY> then (
+                mode := <ERROR_DETECTION>;
+                return errorRecovery.recover(pos, fault, speed, steering);
+            );
             return pos;
         );
 

@@ -24,7 +24,7 @@ class ErrorRecovery
             else return pos;
 
             if faultParam = 1 then (
-                dcl new_x : real := distance * MATH`cos(pos(3));
+                dcl new_x : real := distance * MATH`cos(((MATH`pi)/2)-pos(3));
                 new_pos(1) := new_x;
             );
             return new_pos;
