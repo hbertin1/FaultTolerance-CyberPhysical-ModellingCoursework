@@ -1,7 +1,8 @@
 class ErrorRecovery
 
     instance variables
-        public static last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0]; -- uselesss
+        public static last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
+        public static last_time: real := 0;
 
     operations
         public ErrorRecovery : seq of real ==> ErrorRecovery
@@ -9,11 +10,13 @@ class ErrorRecovery
             last_pos := pos;
         );
 
-        public recover: seq of real * Fault * real * real ==> seq of real
-        recover(pos, fault, speed, steering) == (
+        public recover: seq of real * Fault * real ==> seq of real
+        recover(pos, fault, speed) == (
             dcl loc : Fault`Location := fault.getLocation();
             dcl faultParam : int := 0;
             dcl new_pos : seq of real := pos;
+            dcl delta_time : real := (time-last_time)*1e9;
+            dcl distance : real := speed * delta_time;
 
             -- IO`printf("speed : %s, time : %s", [speed, time/1e9]);
             
@@ -23,9 +26,10 @@ class ErrorRecovery
             else return pos;
 
             if faultParam = 1 then (
-                dcl new_x : real := pos(2) * (MATH`cos(((MATH`pi)/2)+pos(3))/MATH`sin(((MATH`pi)/2)+pos(3)));
+                dcl new_x : real := last_pos(1)+ (distance * MATH`sin(last_pos(3)));
                 new_pos(1) := new_x;
             );
+            last_pos := new_pos;
             return new_pos;
         );
 
