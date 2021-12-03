@@ -20,7 +20,7 @@ class ErrorDetection
                 diff(i) := pos(i) - lastPos(i);
                 IO`printf("pos1: %s, diff1: %s, pos2: %s, diff2: %s, pos3: %s, diff3: %s \n", 
                 [pos(1), diff(1), pos(2), diff(2), pos(3), diff(3)]);
-                if diff(i) > 5 then (
+                if diff(i) > 5 or pos(i) = 0 then (
                     fault.setDetected(true);
                     fault.setLocation(locate(i));
                     IO`printf("Error detected, location : %s \n", [locate(i)]);

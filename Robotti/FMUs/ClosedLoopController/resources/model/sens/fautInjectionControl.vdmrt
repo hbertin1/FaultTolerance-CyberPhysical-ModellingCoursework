@@ -21,7 +21,7 @@ class faultInjectionControl
             -- IO`printf("test random : %s", [portValue]);
             
             if mode = <WAIT> and time >= faultTime then mode := <INJECTION>;
-            if mode = <INJECTION> then return MATH`rand(20)
+            if mode = <INJECTION> then return 0 --MATH`rand(20)
             else return portValue; -- mode = <NO_FAULTS> || <WAIT>
         );
 
