@@ -81,7 +81,7 @@ class Controller
 			if applyFaultTolerance then (
 				dcl PosGNSS2 : seq of real := fault_tolerance.check(PosGNSS, speed, 1);
 				
-				IO`printf("PosGNSS computed : [%s, %s, %s], PosCalcule : [%s,%s,%s]\n", 
+				IO`printf("PosGNSS computed : [%s, %s, %s]\n", 
 				[PosGNSS2(1), PosGNSS2(2), PosGNSS2(3)]);
 			);
 						
