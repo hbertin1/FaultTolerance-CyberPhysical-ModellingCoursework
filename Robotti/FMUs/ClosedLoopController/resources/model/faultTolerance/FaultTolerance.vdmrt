@@ -34,8 +34,8 @@ class FaultTolerance
             --     ret := true;
             -- );
             if mode = <ERROR_RECOVERY> then (
-                -- mode := <ERROR_DETECTION>;
-                if fault.getLocation() = <GNSS_E> then return errorRecovery.recover(pos, fault, speed);
+                mode := <ERROR_RECOVERY>;
+                return errorRecovery.recover(pos, fault, speed);
             );
             return pos;
         );
