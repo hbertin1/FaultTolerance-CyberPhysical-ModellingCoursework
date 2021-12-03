@@ -42,7 +42,7 @@ class Controller
 		
 	values
 		private REQUESTED_SPEED: real = 1.0;
-		private APPLY_FAULT_TOLERANCE: bool = false;
+		private APPLY_FAULT_TOLERANCE: bool = true;
 		
 	operations
 	
