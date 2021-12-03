@@ -16,8 +16,8 @@ class ErrorDetection
             dcl diff : seq of real := [0.0, 0.0, 0.0, 0.0];
             dcl locate : seq of Fault`Location := [<GNSS_E>, <GNSS_N>, <GNSS_H>];
 
-            IO`printf("pos1: %s, pos2: %s, pos3: %s\n", 
-                [calculateX(pos, speed), pos(2), pos(3)]);
+            IO`printf("pos1: %s, pos2: %s, pos3: %s, cos(theta) : %s\n", 
+                [calculateX(pos, speed), pos(2), pos(3), MATH`cos(pos(3))]);
 
             for i = 1 to len diff-1 by 1 do (           -- -1 bc the 4th value isn't used 
                 diff(i) := pos(i) - lastPos(i);
@@ -36,7 +36,7 @@ class ErrorDetection
         calculateX : seq of real * real ==> real
         calculateX(pos, speed) == (
             dcl distance : real := (time/1e9) * speed;
-            dcl new_x : real := distance * distance * MATH`cos(pos(3));
+            dcl new_x : real := distance * MATH`cos(pos(3));
             return new_x;
         );
 
