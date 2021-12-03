@@ -2,13 +2,13 @@ class ErrorRecovery
 
     instance variables
         public static last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
-        -- public static last_time: real := time;
+        public static last_time: real := time;
 
     operations
         public ErrorRecovery : seq of real ==> ErrorRecovery
         ErrorRecovery(pos) == (
             last_pos := pos;
-            -- last_time := time;
+            last_time := time;
         );
 
         public recover: seq of real * Fault * real ==> seq of real
