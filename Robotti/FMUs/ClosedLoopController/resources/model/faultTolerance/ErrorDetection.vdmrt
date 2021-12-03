@@ -36,7 +36,7 @@ class ErrorDetection
         calculateX : seq of real * real ==> real
         calculateX(pos, speed) == (
             dcl distance : real := (time/1e9) * speed;
-            dcl new_x : real := distance * MATH`cos(pos(3));
+            dcl new_x : real := distance * MATH`cos(((MATH`pi)/2)-pos(3));
             return new_x;
         );
 
