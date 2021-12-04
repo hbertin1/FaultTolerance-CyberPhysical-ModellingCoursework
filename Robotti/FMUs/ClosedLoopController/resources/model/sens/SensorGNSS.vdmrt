@@ -26,7 +26,7 @@ class SensorGNSS
 			Sync() == cycles(20)(
 				-- local_val := [faultInjection.injectFault(i_x.get()), i_y.get(), i_theta.get(), 0.0];
 				if time > 30e9 then (
-					local_val := [0.0, i_y.get(), i_theta.get(), 0.0];
+					local_val := [MATH`rand(20), i_y.get(), i_theta.get(), 0.0];
 				)
 				else local_val := [i_x.get(), i_y.get(), i_theta.get(), 0.0];
 
