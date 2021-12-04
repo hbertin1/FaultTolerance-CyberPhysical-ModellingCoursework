@@ -32,7 +32,7 @@ class ErrorRecovery
                 new_pos(1) := new_x;
             );
             last_pos := new_pos;
-            return pos;
+            return new_pos;
         );
 
 end ErrorRecovery
