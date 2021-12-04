@@ -22,7 +22,7 @@ class ErrorDetection
             fault := new Fault();
             last_pos := pos;
 
-            for i = 1 to len diff-1 by 1 do (           -- -1 bc the 4th value isn't used 
+            for i = 1 to len 1 by 1 do (           -- -1 bc the 4th value isn't used diff -1
                 diff(i) := pos(i) - theoreticalPos(i);
                 -- IO`printf("pos1: %s, diff1: %s, pos2: %s, diff2: %s, pos3: %s, diff3: %s \n", 
                 -- [pos(1), diff(1), pos(2), diff(2), pos(3), diff(3)]);
