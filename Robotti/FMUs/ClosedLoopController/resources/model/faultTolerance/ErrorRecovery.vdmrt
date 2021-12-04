@@ -26,9 +26,12 @@ class ErrorRecovery
             else if loc = <GNSS_H> then faultParam := 3
             else return pos;
 
+            faultParam := 1;
+
             if faultParam = 1 then (
                 -- dcl new_x : real := last_pos(1)+ (distance * MATH`sin(last_pos(3)));
                 new_pos(1) := fault.getTheoreticalValue(1);
+                IO`printf("pos new : [%s,%s,%s]", [new_pos(1), new_pos(2), new_pos(3)]);
             );
             -- if faultParam = 2 then (
             --     new_pos(faultParam) := fault.getTheoreticalValue(faultParam);
