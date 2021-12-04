@@ -19,7 +19,7 @@ class ErrorRecovery
             dcl delta_time : real := (time-last_time)/1e9;
             dcl distance : real := speed * delta_time;
 
-            -- IO`printf("speed : %s, time : %s", [speed, time/1e9]);
+            IO`printf("last_time : %s, time : %s, delta_time : %s\n", [last_time/1e9, time/1e9, delta_time]);
             
             -- if loc = <GNSS_E> then faultParam := 1
             -- else if loc = <GNSS_N> then faultParam := 2
