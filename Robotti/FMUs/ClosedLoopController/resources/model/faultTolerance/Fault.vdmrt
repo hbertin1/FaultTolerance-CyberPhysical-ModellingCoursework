@@ -8,6 +8,7 @@ class Fault
         id : int;
         location : Location;
         corrected : bool;
+        theoreticalValue : seq of real;
 
     operations
         public Fault : () ==> Fault
@@ -16,6 +17,7 @@ class Fault
             id := 0;
             location := <NOWHERE>;
             corrected := false;
+            theoreticalValue := [0.0, 0.0, 0.0, 0.0];
         );
 
         public isDetected : () ==> bool
@@ -41,6 +43,12 @@ class Fault
 
         public setCorrected : bool ==> ()
         setCorrected(c) == detected := c;
+
+        public getTheoreticalValue : int ==> real
+        getTheoreticalValue(index) == return theoreticalValue(index);
+
+        public setTheoreticalValue : real * int==> ()
+        setTheoreticalValue(value, index) == theoreticalValue(index) := value;
 
         
 

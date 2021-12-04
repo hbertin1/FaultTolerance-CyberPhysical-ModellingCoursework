@@ -22,9 +22,9 @@ class FaultTolerance
         );
 
         public check : seq of real * real ==> seq of real
-        check(pos, speed) == (                        -- speed and steering are the value given to the Model at Step-1                          -- It's excepted value not real values
+        check(pos, speed) == (                                  -- speed and steering are the value given to the Model at Step-1                          -- It's excepted value not real values
             dcl fault : Fault := new Fault();
-            mode := <ERROR_RECOVERY>;
+           
             if mode = <INIT> then mode := <ERROR_DETECTION>     -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 fault := errorDetection.detect(pos, speed);
@@ -35,8 +35,8 @@ class FaultTolerance
             --     ret := true;
             -- );
             if mode = <ERROR_RECOVERY> then (
-                mode := <ERROR_RECOVERY>;
-                return errorRecovery.recover(pos, fault, speed); -- erreur
+                mode := <ERROR_DETECTION>;
+                return errorRecovery.recover(pos, fault, speed);
             );
             return pos;
         );
