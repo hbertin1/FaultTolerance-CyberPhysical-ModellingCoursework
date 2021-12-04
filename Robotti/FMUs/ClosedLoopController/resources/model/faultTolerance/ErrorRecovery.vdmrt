@@ -30,9 +30,9 @@ class ErrorRecovery
                 -- dcl new_x : real := last_pos(1)+ (distance * MATH`sin(last_pos(3)));
                 new_pos(1) := fault.getTheoreticalValue(1);
             );
-            if faultParam = 2 then (
-                new_pos(faultParam) := fault.getTheoreticalValue(faultParam);
-            );
+            -- if faultParam = 2 then (
+            --     new_pos(faultParam) := fault.getTheoreticalValue(faultParam);
+            -- );
             -- last_pos := new_pos;
             -- last_time := time;
             return new_pos;
