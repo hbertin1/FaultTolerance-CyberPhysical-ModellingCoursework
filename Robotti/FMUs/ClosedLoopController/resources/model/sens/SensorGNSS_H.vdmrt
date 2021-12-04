@@ -13,7 +13,8 @@ instance variables
 		
 	public get: () ==> real
 	get() == (
-		return faultInjection.injectFault(port.getValue());
+		-- return faultInjection.injectFault(port.getValue());
+		return port.getValue();
 	);
 
 end SensorGNSS_H
