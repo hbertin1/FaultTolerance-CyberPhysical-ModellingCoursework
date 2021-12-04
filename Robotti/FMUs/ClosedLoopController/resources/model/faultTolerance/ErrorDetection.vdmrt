@@ -22,18 +22,18 @@ class ErrorDetection
             fault := new Fault();
             last_pos := pos;
 
-            -- for i = 1 to 1 by 1 do (           -- -1 bc the 4th value isn't used diff -1
+            for i = 1 to len diff-2 by 1 do (           -- -2 bc the 4th value isn't used and tetha not yet implemented
                 diff(1) := pos(1) - theoreticalPos(1);
                 -- IO`printf("pos1: %s, diff1: %s, pos2: %s, diff2: %s, pos3: %s, diff3: %s \n", 
                 -- [pos(1), diff(1), pos(2), diff(2), pos(3), diff(3)]);
-                -- if diff(i) > 1 then (
+                if diff(i) > 1 then (
                     fault.setDetected(true);
                     fault.setLocation(locate(1));
                     fault.setTheoreticalValue(theoreticalPos(1), 1);
                     last_pos(1) := theoreticalPos(1);
                     IO`printf("Error detected, location : %s \n", [locate(1)]);
-                -- );
-            -- ); 
+                );
+            ); 
             last_time := time;
             return fault;   
         );
