@@ -45,7 +45,7 @@ class Controller
 		
 	values
 		private REQUESTED_SPEED: real = 1.0;
-		private APPLY_FAULT_INJECTION: bool = false;
+		private APPLY_FAULT_INJECTION: bool = true;
 		private FAULT_INJECTION_START: real = 10e9;
 		private FAULT_INJECTION_STOP: real = 30e9;
 		private FAULT_INJECTION_LOCATION: Fault`Location = <GNSS_N>;
