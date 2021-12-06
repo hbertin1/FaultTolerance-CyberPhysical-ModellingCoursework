@@ -15,7 +15,7 @@ class ErrorRecovery
 
         public recover: seq of real * Fault ==> seq of real
         recover(pos, fault) == (
-            -- dcl loc :  := fault.getLocation();
+            dcl loc : Fault`Location := fault.getLocation();
             -- dcl faultParam : nat := 0;
             dcl new_pos : seq of real := pos;
             -- dcl delta_time : real := (time-last_time)/1e9;
