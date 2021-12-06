@@ -20,9 +20,7 @@ class FaultTolerance
         );
 
         public check : seq of real * real ==> seq of real
-        check(pos, speed) == (                                  
-            -- IO`printf("pos : [%s,%s,%s]", [pos(1), pos(2), pos(3)]);
-           
+        check(pos, speed) == (                                             
             if mode = <INIT> then mode := <ERROR_DETECTION>     -- maybe add init time
             else if mode = <ERROR_DETECTION> then (
                 fault := errorDetection.detect(pos, speed);

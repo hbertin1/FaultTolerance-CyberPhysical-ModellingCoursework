@@ -48,9 +48,7 @@ class Fault
         getTheoreticalValue(index) == return theoreticalValue(index);
 
         public setTheoreticalValue : real * int==> ()
-        setTheoreticalValue(value, index) == theoreticalValue(index) := value;
-
-        
+        setTheoreticalValue(value, index) == theoreticalValue(index) := value;        
 
         -- faire subclass spéciale pour les erreurs de GPS      
 end Fault
