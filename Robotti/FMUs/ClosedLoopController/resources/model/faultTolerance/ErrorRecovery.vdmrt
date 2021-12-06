@@ -1,42 +1,23 @@
 class ErrorRecovery
 
     instance variables
-        private last_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
-        -- private loc: Fault`Location;
-        -- private faultParam : nat := 0;
-        -- last_time: real := time;
+        private new_pos: seq of real :=  [0.0, 0.0, 0.0, 0.0];
+        private loc : Fault`Location; 
 
     operations
         public ErrorRecovery : seq of real ==> ErrorRecovery
         ErrorRecovery(pos) == (
-            last_pos := pos;
-            -- last_time := time;
+            new_pos := pos;
+            loc := <NOWHERE>;
         );
 
         public recover: seq of real * Fault ==> seq of real
         recover(pos, fault) == (
-            dcl loc : Fault`Location := fault.getLocation();
-            -- dcl faultParam : nat := 0;
-            dcl new_pos : seq of real := pos;
-            -- dcl delta_time : real := (time-last_time)/1e9;
-            -- dcl distance : real := speed * delta_time;
+            loc := fault.getLocation();
+            new_pos := pos;
 
-            -- IO`printf("last_time : %s, time : %s, delta_time : %s\n", [last_time/1e9, time/1e9, delta_time]);
-            
-            -- if loc = <GNSS_E> then faultParam := 1
-            -- else if loc = <GNSS_N> then faultParam := 2
-            -- else if loc = <GNSS_H> then faultParam := 3
-            -- else return pos;
-
-            if loc = <GNSS_E> then (
-                -- dcl new_x : real := last_pos(1)+ (distance * MATH`sin(last_pos(3)));
-                new_pos(1) := fault.getTheoreticalValue(1);
-            );
-            if loc = <GNSS_N> then (
-                new_pos(2) := fault.getTheoreticalValue(2);
-            );
-            -- last_pos := new_pos;
-            -- last_time := time;
+            if loc = <GNSS_E> then new_pos(1) := fault.getTheoreticalValue(1);
+            if loc = <GNSS_N> then new_pos(2) := fault.getTheoreticalValue(2);
             return new_pos;
         );
 
