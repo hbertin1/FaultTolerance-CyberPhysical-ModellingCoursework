@@ -2,7 +2,7 @@ class ErrorDetection
 
     instance variables
         public static last_pos : seq of real := [0.0, 0.0, 0.0, 0.0];
-        public fault : Fault;
+        public fault : [Fault];
         last_time: real := time;
 
     operations
@@ -38,7 +38,7 @@ class ErrorDetection
             return fault;   
         );
 
-        -- next theoretical GNSS Position
+        -- theoretical GNSS Position thanks to previous position
         calculateNextPos : real ==> seq of real
         calculateNextPos(speed) == (
             dcl delta_time : real := (time-last_time)/1e9;

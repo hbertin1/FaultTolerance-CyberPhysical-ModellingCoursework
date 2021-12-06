@@ -2,13 +2,13 @@ class SensorGNSS_E
 
 instance variables
 	port : RealPort;
-	faultInjection : faultInjectionControl;
+	-- faultInjection : faultInjectionControl;
 
 	operations
 	public SensorGNSS_E : RealPort ==> SensorGNSS_E
 	SensorGNSS_E(p) == (
 		port := p;
-		faultInjection := new faultInjectionControl(10e9, false);
+		-- faultInjection := new faultInjectionControl(10e9, false);
 	);
 		
 	public get: () ==> real

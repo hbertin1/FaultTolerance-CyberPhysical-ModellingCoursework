@@ -1,0 +1,44 @@
+class FaultInjectionControl 
+
+    types 
+        Mode = <NO_FAULTS> | <WAIT> | <INJECTION>
+
+    instance variables
+        private mode : Mode := <NO_FAULTS>; 
+        private time_start : real := 10e9;
+        private time_stop : real := 30e9;
+        private location : Fault`Location := <NOWHERE>;
+
+    operations
+        public FaultInjectionControl : bool * real * real * Fault`Location ==>  FaultInjectionControl
+        FaultInjectionControl(injection, t_start, t_stop, loc) == (
+            if injection then mode := <WAIT>
+            else mode := <NO_FAULTS>;
+            time_start := t_start;
+            time_stop := t_stop;
+            location := loc;
+        );
+ 
+        public injectFault : seq of real ==> seq of real
+        injectFault(portValues) == (
+            -- IO`printf("test random : %s", [portValue]);
+            dcl ret : seq of real := portValues;
+            if mode = <WAIT> and time >= time_start and time <= time_stop then mode := <INJECTION>;
+            if mode = <INJECTION> then (
+                mode := <WAIT>;
+                ret(loc2Index(location)) := MATH`rand(20);
+            );
+            return ret; -- mode = <NO_FAULTS> || <WAIT>
+        );
+
+
+        private loc2Index : Fault`Location ==> int
+        loc2Index(loc) == (
+            if loc = <GNSS_E> then return 1
+            else if loc = <GNSS_N> then return 2
+            else if loc = <GNSS_H> then return 3
+            else return -1;
+        )
+
+
+end FaultInjectionControl

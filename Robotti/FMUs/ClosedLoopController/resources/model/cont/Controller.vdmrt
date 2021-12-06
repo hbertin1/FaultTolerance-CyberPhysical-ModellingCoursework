@@ -34,6 +34,9 @@ class Controller
 		private route: Route := new Route([]);
 		private wp: WayPoint := new WayPoint(0,0);
 
+		-- fault injection mechanism
+		private faultInjection : FaultInjectionControl;
+
 		-- fault tolerance mechanism
 		private fault_tolerance: [FaultTolerance];
 		private applyFaultTolerance: bool;
@@ -42,6 +45,10 @@ class Controller
 		
 	values
 		private REQUESTED_SPEED: real = 1.0;
+		private APPLY_FAULT_INJECTION: bool = false;
+		private FAULT_INJECTION_START: real = 10e9;
+		private FAULT_INJECTION_STOP: real = 30e9;
+		private FAULT_INJECTION_LOCATION: Fault`Location = <GNSS_N>;
 		private APPLY_FAULT_TOLERANCE: bool = false;
 		
 	operations
@@ -52,7 +59,11 @@ class Controller
 			actuatorAngle :=  aSt;
 			actuatorSpeed := aSp;
 
-			fault_tolerance := new FaultTolerance();	-- new instance of the fault tolerance
+			-- init Fault Injection
+			faultInjection := new FaultInjectionControl(APPLY_FAULT_INJECTION, FAULT_INJECTION_START, FAULT_INJECTION_STOP, FAULT_INJECTION_LOCATION);
+
+			-- init Fault Tolerance
+			fault_tolerance := new FaultTolerance();
 			applyFaultTolerance := APPLY_FAULT_TOLERANCE;
 			faultToleranceApplied := false;
 
@@ -74,8 +85,9 @@ class Controller
 			actuatorAngle.setValue(steering_angle);
 			actuatorSpeed.setValue(speed);			
 
+			-- fault injection
             -- read GPS: x, y, theta, 0
-			PosGNSS := sensorGNSS_Pos.read(); 
+			PosGNSS := faultInjection.injectFault(sensorGNSS_Pos.read()); 
 
 			-- verify the correctness of the GPS data 
 			if applyFaultTolerance then (
