@@ -50,12 +50,7 @@ class Fault
         public setTheoreticalValue : real * int==> ()
         setTheoreticalValue(value, index) == theoreticalValue(index) := value;        
 
-        -- faire subclass spéciale pour les erreurs de GPS      
 end Fault
 
--- voir si on met ça
 
--- class GNSS_Fault is subclass of Fault
-
-
--- end fault
+ -- faire subclass spéciale pour les erreurs de GPS ?
