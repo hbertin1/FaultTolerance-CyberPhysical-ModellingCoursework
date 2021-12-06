@@ -5,15 +5,13 @@ class SensorGNSS
 		public static i_y : [SensorGNSS_N] := nil;
 		public static i_theta : [SensorGNSS_H] := nil;
 		protected local_val: seq of real := [0.0, 0.0, 0.0, 0.0];
-		-- faultInjection : FaultInjectionControl;
-	
+			
 	operations
 		public SensorGNSS: SensorGNSS_E * SensorGNSS_N * SensorGNSS_H ==> SensorGNSS
 			SensorGNSS(x,y,theta) == (
 				i_x := x;
 				i_y := y;
 				i_theta := theta;
-				-- faultInjection := new FaultInjectionControl(30e9, true);
 			);
 	
 		public read: () ==> seq of real
@@ -24,7 +22,6 @@ class SensorGNSS
 	
 		public Sync: () ==> ()
 			Sync() == cycles(20)(
-				-- local_val := [faultInjection.injectFault(i_x.get()), i_y.get(), i_theta.get(), 0.0];
 				local_val := [i_x.get(), i_y.get(), i_theta.get(), 0.0];
 
 			);

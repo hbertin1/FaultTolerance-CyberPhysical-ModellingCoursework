@@ -2,19 +2,14 @@ class SensorGNSS_H
 
 instance variables
 	port : RealPort;
-	-- faultInjection : faultInjectionControl;
 
 	operations
 	public SensorGNSS_H : RealPort ==> SensorGNSS_H
 	SensorGNSS_H(p) == (
 		port := p;
-		-- faultInjection := new faultInjectionControl(20e9, false);
 	);
 		
 	public get: () ==> real
-	get() == (
-		-- return faultInjection.injectFault(port.getValue());
-		return port.getValue();
-	);
+	get() == return port.getValue();
 
 end SensorGNSS_H
