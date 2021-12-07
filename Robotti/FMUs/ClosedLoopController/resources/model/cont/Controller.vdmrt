@@ -48,7 +48,7 @@ class Controller
 		private APPLY_FAULT_INJECTION: bool = true;
 		private FAULT_INJECTION_START: real = 10e9;
 		private FAULT_INJECTION_STOP: real = 30e9;
-		private FAULT_INJECTION_LOCATION: Fault`Location = <GNSS_N>;
+		private FAULT_INJECTION_LOCATION: Fault`Location = <GNSS_H>;
 		private APPLY_FAULT_TOLERANCE: bool = true;
 		
 	operations

@@ -22,7 +22,7 @@ class ErrorDetection
             fault := new Fault();
             last_pos := pos;
 
-            for i = 1 to len diff-2 by 1 do (           -- -2 bc the 4th value isn't used and tetha not yet implemented
+            for i = 1 to len diff-1 by 1 do (           -- -2 bc the 4th value isn't used and tetha not yet implemented
                 diff(i) := abs(pos(i) - theoreticalPos(i));
                 if diff(i) > 0.3 then (
                     fault.setDetected(true);
@@ -45,6 +45,8 @@ class ErrorDetection
 
             new_pos(1) := last_pos(1) + (distance * MATH`sin(last_pos(3)));
             new_pos(2) := last_pos(2) + (distance * MATH`cos(last_pos(3)));
+            -- theta not implemented yet
+            new_pos(3) := MATH`atan2(new_pos(1), new_pos(2));
 
             return new_pos;
         );
