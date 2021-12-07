@@ -5,7 +5,7 @@ class Fault
 
     instance variables
         detected : bool;
-        id : int;
+        id : int;           -- not useful but could be later to identify faults
         location : Location;
         corrected : bool;
         theoreticalValue : seq of real;
@@ -19,6 +19,8 @@ class Fault
             corrected := false;
             theoreticalValue := [0.0, 0.0, 0.0, 0.0];
         );
+
+        -- Getters/Setters
 
         public isDetected : () ==> bool
         isDetected() == return detected;

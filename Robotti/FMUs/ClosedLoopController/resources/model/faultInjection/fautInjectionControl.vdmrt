@@ -12,6 +12,7 @@ class FaultInjectionControl
     operations
         public FaultInjectionControl : bool * real * real * Fault`Location ==>  FaultInjectionControl
         FaultInjectionControl(injection, t_start, t_stop, loc) == (
+            -- Mode stays at <NO_FAULTS> if no injection is wanted
             if injection then mode := <WAIT>
             else mode := <NO_FAULTS>;
             time_start := t_start;
@@ -21,7 +22,6 @@ class FaultInjectionControl
  
         public injectFault : seq of real ==> seq of real
         injectFault(portValues) == (
-            -- IO`printf("test random : %s", [portValue]);
             dcl ret : seq of real := portValues;
             if mode = <WAIT> and time >= time_start and time <= time_stop then mode := <INJECTION>;
             if mode = <INJECTION> then (

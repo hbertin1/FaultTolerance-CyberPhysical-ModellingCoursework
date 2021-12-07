@@ -18,7 +18,8 @@ class ErrorRecovery
 
             if loc = <GNSS_E> then new_pos(1) := fault.getTheoreticalValue(1);
             if loc = <GNSS_N> then new_pos(2) := fault.getTheoreticalValue(2);
-            if loc = <GNSS_N> then new_pos(3) := fault.getTheoreticalValue(3);
+            -- not implemented yet
+            -- if loc = <GNSS_N> then new_pos(3) := fault.getTheoreticalValue(3);
             return new_pos;
         );
 
